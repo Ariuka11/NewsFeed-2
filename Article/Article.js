@@ -112,3 +112,47 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 
 */
+
+//Iterating through the article items and passing the items to the articleComponent and nesting inside the articles class.
+  data.forEach((article) => {
+    const articles = document.querySelector('.articles');
+    articles.appendChild(articleComponent(article))
+  })
+
+//Creating an articleComponent and passing items as an argument.
+ function articleComponent(article) {
+//Creating elements for each html elements.
+    const div = document.createElement('div');
+    const h2 = document.createElement('h2');
+    const dateTag = document.createElement('p');
+    const buttonExpand = document.createElement('span');
+    const firstPtag = document.createElement('p')
+    const secondPtag = document.createElement('p')
+    const thirdPtag = document.createElement('p')
+//Adding class to the createdElements
+    div.classList.add('article');
+    dateTag.classList.add('date');
+    buttonExpand.classList.add('expandButton');
+//Nesting the elements in to the parent element
+    div.appendChild(h2);
+    div.appendChild(dateTag);
+    div.appendChild(firstPtag);
+    div.appendChild(secondPtag);
+    div.appendChild(thirdPtag);
+    div.appendChild(buttonExpand);
+//Adding contents to the elements with iterated items that are passed as parameter in the articleComponent function. 
+    h2.textContent = article.title;
+    dateTag.textContent = article.date;
+    firstPtag.textContent = article.firstParagraph;
+    secondPtag.textContent = article.secondParagraph;
+    thirdPtag.textContent = article.thirdParagraph;
+    buttonExpand.textContent = 'click here for more'
+// Adding eventListener to the button to toggle the article component.
+    buttonExpand.addEventListener('click', e => {
+      div.classList.toggle('article-open')
+    })
+    console.log(buttonExpand);
+
+   return div
+    
+ }
