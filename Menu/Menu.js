@@ -33,3 +33,36 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+
+// Inserting the menu component into the burger menu image.
+document.querySelector('.header').appendChild(menuComponent(menuItems));
+
+// Creating the menu Component and passing the data as an argument.
+function menuComponent(menuItems){
+
+//Creating the elements   
+  const div = document.createElement('div')
+  const ul = document.createElement('ul')
+
+//Adding the class to the created element.
+  div.classList.add('menu');
+
+//Nesting the child inside the parent.
+  div.appendChild(ul)
+
+//Iterating through the array items to create 'li' element and pass the items then nesting inside the 'ul'.
+  menuItems.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item
+    ul.appendChild(li)
+  })
+
+// Adding eventListener to the menuButton and toggling the class of the div.
+  const menuButton = document.querySelector('.menu-button');
+  menuButton.addEventListener('click', e => {
+    div.classList.toggle('menu--open')
+  });
+
+  return div;
+}
